@@ -11,6 +11,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "GameFramework/Character.h"
 #include "BuildingSystem/Building/Building.h"
+#include "ExperienceComponent.h"
 #include "RPGSystemCharacter.generated.h"
 
 UENUM(BlueprintType)		//"BlueprintType" is essential to include
@@ -94,6 +95,9 @@ public:
 	EPlayerStates GetPlayerStates() { return PlayerStates; }
 
 	UFUNCTION(BlueprintCallable)
+	UExperienceComponent* GetExpComponent() { return ExpComponent; }
+
+	UFUNCTION(BlueprintCallable)
 	UResourceManager* GetResourceManager() { return ResourceManager; }
 
 	UFUNCTION(BlueprintCallable)
@@ -118,6 +122,9 @@ public:
 	void SightTrace();
 
 private:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	UExperienceComponent* ExpComponent;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player State", meta = (AllowPrivateAccess = "true"))
 	EPlayerStates PlayerStates;
 

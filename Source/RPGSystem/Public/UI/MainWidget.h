@@ -15,6 +15,7 @@
 #include "BuildingSystem/Widgets/StatWidget.h"
 #include "BuildingSystem/Widgets/BuildingWidget.h"
 #include "BuildingSystem/Widgets/ResourceWidget.h"
+#include "Player/ExperienceWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "MainWidget.generated.h"
 
@@ -25,6 +26,9 @@ class RPGSYSTEM_API UMainWidget : public UUserWidget
 public:
 	UMainWidget(const FObjectInitializer & ObjectInitializer);
 	
+	UFUNCTION(BlueprintCallable)
+	UExperienceWidget* GetExpWidget() { return Experience; }
+
 	UFUNCTION(BlueprintCallable)
 	URadarWidget* GetRadarWidget() { return Radar; }
 
@@ -59,6 +63,9 @@ public:
 	void ShowCurrentResource(bool bShowResource);
 
 private:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true", BindWidget))
+	UExperienceWidget* Experience;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true", BindWidget))
 	URadarWidget* Radar;
 
